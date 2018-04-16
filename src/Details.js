@@ -8,12 +8,12 @@ export default class Details extends Component {
       this.state = {'contacts':[], 'fetching':true};      
     }
     componentWillUnmount() {
-        window.removeEventListener('hashchange',() => {
+        window.removeEventListener('hashchange', () => {
             this.setState({'fetching':true});
             fetch('http://profiler.markinson.com.au/api/Customer')
         .then((res) => res.json())
         .then((something)=> { return something.map((val,index,array)=>{return val.companyName})})
-        .then((something)=>{this.setState({"contacts":something.filter((val,id,array)=>{ return val.toLowerCase().includes(this.props.word) && array.indexOf(val)===id})}); return this.state.contacts;})
+        .then((something)=>{this.setState({"contacts":something.filter((val,id,array)=>{ return val.toLowerCase().split(' ').indexOf(this.props.word) >= 0 && array.indexOf(val)===id})}); return this.state.contacts;})
         .then((something)=>{this.setState({"contacts":something.sort(),"fetching":false}); return this.state.contacts;})
         .catch((reason)=>{ window.location.hash = "NotFound";});      
     });
@@ -35,7 +35,7 @@ export default class Details extends Component {
     .then((something)=>{this.setState({"contacts":something.filter((val,id,array)=>{ return val.toLowerCase().split(' ').indexOf(this.props.word) >= 0 && array.indexOf(val)===id})}); return this.state.contacts;})
     .then((something)=>{this.setState({"contacts":something.sort(),"fetching":false}); return this.state.contacts;})
     .catch((reason)=>{ window.location.hash = "NotFound";});      
-})
+});
         
 }
 
