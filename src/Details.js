@@ -24,7 +24,7 @@ export default class Details extends Component {
     fetch('http://profiler.markinson.com.au/api/Customer')
     .then((res) => res.json())
     .then((something)=> { return something.map((val,index,array)=>{return val.companyName})})
-    .then((something)=>{this.setState({"contacts":something.filter((val,id,array)=>{ return val.toLowerCase().split(' ').indexOf(this.props.word) >= 0 && array.indexOf(val)===id})}); return this.state.contacts;})
+    .then((something)=>{this.setState({"contacts":something.filter((val,id,array)=>{ return val.toLowerCase().split(' ').indexOf(this.props.word) >= 0})}); return this.state.contacts;})
     .then((something)=>{this.setState({"contacts":something.sort(),"fetching":false}); return this.state.contacts;})
     .catch((reason)=>{ window.location.hash = "NotFound";});
     window.addEventListener('hashchange', () => {
@@ -32,7 +32,7 @@ export default class Details extends Component {
         fetch('http://profiler.markinson.com.au/api/Customer')
     .then((res) => res.json())
     .then((something)=> { return something.map((val,index,array)=>{return val.companyName})})
-    .then((something)=>{this.setState({"contacts":something.filter((val,id,array)=>{ return val.toLowerCase().split(' ').indexOf(this.props.word) >= 0 && array.indexOf(val)===id})}); return this.state.contacts;})
+    .then((something)=>{this.setState({"contacts":something.filter((val,id,array)=>{ return val.toLowerCase().split(' ').indexOf(this.props.word) >= 0})}); return this.state.contacts;})
     .then((something)=>{this.setState({"contacts":something.sort(),"fetching":false}); return this.state.contacts;})
     .catch((reason)=>{ window.location.hash = "NotFound";});      
 });
@@ -46,7 +46,7 @@ export default class Details extends Component {
     }
   }
   isCommon = (word) =>{
-    if(word.length <= 2 || word === "where" || word === "what" || word === "whether" || word === "when" || word === "never" || word === "and" || word === "are" || word === "the" || word === "their" || word === "there" || word === "this" || word === "that" || word === "what" || word === "ltd" || word === "limited" || word === "non" || word === "here" || word === "under" || word === "down" || word === "left" || word === "right" || word === "near" || word === "corp" || word === "corp." || word === "inc" || word === "inc.")
+    if(word.length <= 2 || word === "where" || word === "what" || word === "whether" || word === "when" || word === "never" || word === "and" || word === "are" || word === "the" || word === "their" || word === "there" || word === "this" || word === "that" || word === "what" || word === "ltd" || word === "limited" || word === "non" || word === "here" || word === "under" || word === "down" || word === "left" || word === "right" || word === "near")
     {
       return true;
     }

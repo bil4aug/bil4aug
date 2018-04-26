@@ -12,9 +12,7 @@ export default class Data extends Component {
   {
     fetch('http://profiler.markinson.com.au/api/Customer')
     .then((res) => res.json())
-    .then((something) => {(something.map((item,index)=>{(item.companyName.split(' ')).map((item1,index)=>{this.addWord(item1,item.companyName)})})); this.setState({'contacts':something,'fetching':false})}).then((something)=> {this.setState ({"words": this.state.words.sort()})}).then((something)=>{this.setState ({"words":this.state.words.filter((val, id, array) => {
-      return array.indexOf(val) === id;  
-   })})}).then((something)=>{
+    .then((something) => {(something.map((item,index)=>{(item.companyName.split(' ')).map((item1,index)=>{this.addWord(item1,item.companyName)})})); this.setState({'contacts':something,'fetching':false})}).then((something)=> {this.setState ({"words": this.state.words.sort()})}).then((something)=>{
     var uniques = this.state.words.filter((val, id, array) => {
       return array.indexOf(this.state.words.find((el)=>{return el.split('%')[0] === val.split('%')[0]})) === id;  
    });
@@ -63,7 +61,7 @@ export default class Data extends Component {
   }
 
   isCommon = (word) => {
-    if(word === "where" || word === "what" || word === "whether" || word === "when" || word === "never" || word === "and" || word === "are" || word === "the" || word === "their" || word === "there" || word === "this" || word === "that" || word === "what" || word === "ltd" || word === "limited" || word === "non" || word === "here" || word === "under" || word === "down" || word === "left" || word === "right" || word === "near" || word === "corp" || word === "corp." || word === "inc" || word === "inc.")
+    if(word === "where" || word === "what" || word === "whether" || word === "when" || word === "never" || word === "and" || word === "are" || word === "the" || word === "their" || word === "there" || word === "this" || word === "that" || word === "what" || word === "ltd" || word === "limited" || word === "non" || word === "here" || word === "under" || word === "down" || word === "left" || word === "right" || word === "near")
     {
       return true;
     }
